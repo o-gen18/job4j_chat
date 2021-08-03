@@ -1,0 +1,35 @@
+Create
+curl -H "Content-Type: application/json" -X POST -d "[{\"name\":\"Employee First\",\"surname\":\"Employee First Surname\",\"taxInfoNumber\":\"111-222-333-444\"},[{\"login\":\"Admin\",\"password\":\"Admin123\"},{\"login\":\"User\",\"password\":\"User123\"}]]" http://localhost:8080/employee/
+
+curl -H "Content-Type: application/json" -X POST -d "{\"id\":0,\"name\":\"Employee First\",\"surname\":\"Employee First Surname\",\"taxInfoNumber\":\"111-222-333-444\",\"hired\":1627573738204,\"accounts\":[]}" http://localhost:8080/employee/
+
+Different guy
+curl -H "Content-Type: application/json" -X POST -d "[{\"name\":\"Employee Second\",\"surname\":\"Employee Second Surname\",\"taxInfoNumber\":\"222-333-444-555\"},[{\"login\":\"Employee 2\",\"password\":\"Empl2Passs\"}]]" http://localhost:8080/employee/
+
+findAll
+curl -i http://localhost:8080/employee/
+
+findById
+curl -i http://localhost:8080/employee/2
+
+AddNewPerson
+curl -H "Content-Type: application/json" -X POST -d "{\"name\":\"New Name\",\"email\":\"New@Email\",\"password\":\"New Password 123\"}" http://localhost:8080/person/
+
+DeletePerson
+curl -i -X DELETE http://localhost:8080/employee/2?accId=5
+
+UpdateEmployee
+curl -i -H "Content-Type: application/json" -X PUT -d "{\"id\":\"?\",\"name\":\"Employee UPPDATEDD\",\"surname\":\"Employee UUPDATED Surname\",\"taxInfoNumber\":\"9999999999999\"}" http://localhost:8080/employee/
+
+DeleteEmployee
+curl -i -X DELETE http://localhost:8080/employee/?
+
+
+CreateNewMessage
+curl -H "Content-Type: application/json" -X POST -d "{\"message\":\"This is new message, can be loooooong text\"}" http://localhost:8080/message/1/1
+
+CreateNewRoom
+curl -H "Content-Type: application/json" -X POST -d "{\"name\":\"new Room\"}" http://localhost:8080/room/
+
+RegisterPersonInRoom
+curl -H "Content-Type: application/json" -X POST http://localhost:8080/room/1/1
