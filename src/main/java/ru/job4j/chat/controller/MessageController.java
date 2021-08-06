@@ -16,9 +16,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/message")
 public class MessageController {
-    RoomRepository roomRepository;
-    MessageRepository messageRepository;
-    PersonRepository personRepository;
+    private final RoomRepository roomRepository;
+    private final MessageRepository messageRepository;
+    private final PersonRepository personRepository;
 
     public MessageController(RoomRepository roomRepository,
                              MessageRepository messageRepository,
@@ -61,5 +61,13 @@ public class MessageController {
                 messageRepository.save(message),
                 HttpStatus.OK
         );
+    }
+
+    @DeleteMapping("/{messageId}")
+    public ResponseEntity<Void> deleteMessage(@PathVariable int messageId) {
+        Message message = new Message();
+        message.setId(messageId);
+        messageRepository.delete(message);
+        return ResponseEntity.ok().build();
     }
 }

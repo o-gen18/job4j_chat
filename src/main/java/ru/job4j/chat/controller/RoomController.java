@@ -13,8 +13,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/room")
 public class RoomController {
-    RoomRepository roomRepository;
-    PersonRepository personRepository;
+    private final RoomRepository roomRepository;
+    private final PersonRepository personRepository;
 
     public RoomController(RoomRepository roomRepository,
                           PersonRepository personRepository) {
