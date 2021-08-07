@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.job4j.chat.model.Person;
-import ru.job4j.chat.perository.PersonRepository;
+import ru.job4j.chat.repository.PersonRepository;
 
 import java.util.Collections;
 

@@ -1,15 +1,14 @@
 package ru.job4j.chat.controller;
 
-import antlr.debug.MessageAdapter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.chat.model.Message;
 import ru.job4j.chat.model.Person;
 import ru.job4j.chat.model.Room;
-import ru.job4j.chat.perository.MessageRepository;
-import ru.job4j.chat.perository.PersonRepository;
-import ru.job4j.chat.perository.RoomRepository;
+import ru.job4j.chat.repository.MessageRepository;
+import ru.job4j.chat.repository.PersonRepository;
+import ru.job4j.chat.repository.RoomRepository;
 
 import java.util.Optional;
 

@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.chat.model.Person;
-import ru.job4j.chat.perository.PersonRepository;
+import ru.job4j.chat.repository.PersonRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
