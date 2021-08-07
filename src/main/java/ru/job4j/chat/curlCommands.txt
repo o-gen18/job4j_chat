@@ -23,3 +23,12 @@ curl -H "Content-Type: application/json" -X POST -d "{\"name\":\"new Room\"}" ht
 
 RegisterPersonInRoom
 curl -H "Content-Type: application/json" -X POST http://localhost:8080/room/1/1
+
+AuthorizePerson
+curl -H "Content-Type: application/json" -X POST -d "{\"name\":\"New Name\",\"email\":\"New@Email2\",\"password\":\"New Password 123\"}" http://localhost:8080/persons/sign-up
+
+GetUser'sToken
+curl -i -H "Content-Type: application/json" -X POST -d "{\"email\":\"New@Email2\",\"password\":\"New Password 123\"}" http://localhost:8080/login
+
+GetAllUsersWith this token
+curl -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJOZXcgTmFtZSIsImV4cCI6MTYyOTIxMTk4OX0.8B7Yhb3cRxJIsBFb3DsUqwPYyV-j5wpWEkfhXlEXMfT-khBqZsKYKm_msPfHdseUgWt-AodD_xhTWwLQWQ-GSw" http://localhost:8080/persons/all
