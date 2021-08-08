@@ -1,6 +1,7 @@
 package ru.job4j.chat.model;
 
 import javax.persistence.*;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -15,11 +16,15 @@ public class Room {
     @Column(unique = true)
     private String name;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "person_id", foreignKey = @ForeignKey(name = "PERSON_ID_FK"))
+    private Person creator;
+
     @ManyToMany
-    private Map<Integer, Person> persons;
+    private Map<Integer, Person> persons = new HashMap<>();
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
-    private Map<Integer, Message> messages;
+    private Map<Integer, Message> messages = new HashMap<>();
 
     public Person addPerson(Person person) {
         return persons.put(person.getId(), person);
@@ -45,12 +50,28 @@ public class Room {
         this.name = name;
     }
 
+    public Person getCreator() {
+        return creator;
+    }
+
+    public void setCreator(Person creator) {
+        this.creator = creator;
+    }
+
     public Map<Integer, Person> getPersons() {
         return persons;
     }
 
     public void setPersons(Map<Integer, Person> persons) {
         this.persons = persons;
+    }
+
+    public Map<Integer, Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(Map<Integer, Message> messages) {
+        this.messages = messages;
     }
 
     @Override

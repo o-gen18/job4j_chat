@@ -8,6 +8,7 @@ import ru.job4j.chat.model.Room;
 import ru.job4j.chat.repository.PersonRepository;
 import ru.job4j.chat.repository.RoomRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -22,8 +23,13 @@ public class RoomController {
         this.personRepository = personRepository;
     }
 
-    @PostMapping("/")
-    public ResponseEntity<Room> create(@RequestBody Room room) {
+    @PostMapping("/create/{personId}")
+    public ResponseEntity<Room> create(@RequestBody Room room,
+                                       @PathVariable int personId) {
+        Person person = personRepository.findById(personId).orElseThrow();
+        System.out.println(person);
+        room.addPerson(person);
+        room.setCreator(person);
         return new ResponseEntity<>(
                 roomRepository.save(room),
                 HttpStatus.CREATED
@@ -53,5 +59,11 @@ public class RoomController {
                 roomRepository.save(room),
                 HttpStatus.OK
         );
+    }
+
+    @GetMapping("/all/{personId}")
+    public List<Room> getPersonRooms(@PathVariable int personId) {
+        Person person = personRepository.findById(personId).orElseThrow();
+        return roomRepository.findRoomsByCreatorName(person.getName());
     }
 }
