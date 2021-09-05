@@ -1,36 +1,28 @@
 package ru.job4j.chat.model;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.sun.istack.Nullable;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
 @Table(name = "messages")
-public class Message {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class Message extends Id {
 
     @Column(columnDefinition = "TEXT")
     private String message;
 
     private Timestamp created = new Timestamp(System.currentTimeMillis());
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id", foreignKey = @ForeignKey(name = "AUTHOR_ID_FR"))
     private Person author;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id", foreignKey = @ForeignKey(name = "ROOM_ID_FK"))
     private Room room;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getMessage() {
         return message;
@@ -65,15 +57,13 @@ public class Message {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Message message = (Message) o;
-        return id == message.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+    public String toString() {
+        return "Message{" +
+                "message='" + message + '\'' +
+                ", created=" + created +
+                ", author=" + author +
+                ", room=" + room.name +
+                ", id=" + id +
+                '}';
     }
 }
